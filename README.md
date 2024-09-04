@@ -1,4 +1,4 @@
-# Ejercicios de Programación en Pascal
+# Ejercicios de Programación en Pascal 👨🏻‍💻🤩
 
 Este repositorio contiene una colección de ejercicios realizados como parte de la materia de Programación en la carrera de Analista de Sistemas. Los ejercicios están diseñados para practicar y profundizar en los conceptos básicos y avanzados del lenguaje de programación Pascal.
 
