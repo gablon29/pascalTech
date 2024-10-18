@@ -1,68 +1,41 @@
 {
-  51) Desarrolle un programa que permita generar un sorteo de la 
-  Quiniela (10 números de 3 cifras generados al azar). Imprimir los 
-  números en el orden en que salieron sorteados. Permitir buscar un 
-  número sorteado
+   50) Desarrolle un programa con un PROCEDIMIENTO que solicite al 
+   usuario el ingreso de 2 números, y luego pregunte cuál de las 
+   cuatro operaciones básicas va a realizar, resolver utilizando 
+   FUNCIONES, y luego imprimir el resultado. Validar los valores 
+   ingresados.
 }
 
 
 program ejer50;
 
-uses crt, SysUtils;
-
-// declaramos los datos importantes para procesos 
-const
-	indiceSup = 4;
-	indiceInf = 1;
-	limiteSup = 100;
-	limiteInf = 999;
-	
-var 
-	numWynner : array[indiceInf..indiceSup] of integer;
-	num : byte;
-	
-// validacion de busqueda
-procedure validacionBusqueda();
-var
-	seguir : boolean;
+uses crt;
+var num1, num2 : integer;
+// funciones de operaciones aritmeticas
+function operacion(num1, num2:integer; symbol: char): real;
 begin
-	repeat
-	write('ingrese el lugar que desea saber su valor:  ');
-	seguir := false;
-	read(num);
-	if (num < indiceInf) or (num > indiceSup) then writeln('Error: el valor ingresado es incorrecto')
-	else 
-	seguir:= true;
-	until seguir = true;
-end;
-
-procedure encontrarNum();
-var
-	i : byte;
-	numSort : integer;
-begin
-	Randomize;
-	for i := indiceInf to indiceSup do
-	begin
-	numSort:= limiteInf + Random(limiteSup - limiteInf + 1);
-	writeln('numero sorteado: ', numSort);
-	numWynner[i] := numSort;
-	readkey;
+	case symbol of
+	'+': operacion := num1 + num2;
+	'-': operacion := num1 - num2;
+	'*': operacion := num1 * num2;
+	'/': operacion := num1 / num2;
 	end;
+	if (symbol <> '/') then write('resultado: ', operacion:0:0)
+	else write('resultado: ', operacion:5:2);
 end;
-
-// funcion para buscar por indice
-function filtrarPorIndice():integer;
-
+procedure procedimientoAritmecio();
+var
+	symbol : char;
 begin
-	validacionBusqueda();
-	filtrarPorIndice:= numWynner[num];
-	write('El valor es: ', filtrarPorIndice);
+	write('Ingrese los numeros para comenzar el proceso: ');
+	readln(num1);
+	write('Ahora ingrese el segundo numero: ');
+	readln(num2);
+	writeln('Ahora ingrese el simbolo de la operacion que tiene que hacer: ');
+	readln(symbol);
+	operacion(num1, num2, symbol);
 end;
-
 BEGIN
-	encontrarNum();
-	readkey;
-	filtrarPorIndice();
+	procedimientoAritmecio();
 END.
 
