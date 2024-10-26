@@ -23,9 +23,10 @@ begin
 	begin
 		for j := 1 to LC-1 do
 		begin
-			numeros[i,j] := Random(100);
+			numeros[j,i] := Random(100);
 			numeros[LC,i] += numeros[j,i]; // acumulamos el total de la fila
 			numeros[j,LF] += numeros[j,i]; // acumulamos el total de la columna
+			numeros[LC,LF] += numeros[LC,i] + numeros[j,LF];
 		end;
 	end;
 end;
