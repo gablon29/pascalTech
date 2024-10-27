@@ -26,7 +26,7 @@ begin
 			numeros[j,i] := Random(100);
 			numeros[LC,i] += numeros[j,i]; // acumulamos el total de la fila
 			numeros[j,LF] += numeros[j,i]; // acumulamos el total de la columna
-			numeros[LC,LF] += numeros[LC,i] + numeros[j,LF];
+			numeros[LC,LF] += numeros[LC,i] + numeros[j,LF];// acumulamos el total de todos los valores
 		end;
 	end;
 end;
@@ -36,6 +36,12 @@ begin
 	begin
 		for j := 1 to LC do
 		begin
+			if (i = LF) or (j = LC) then
+			begin
+				if (i = LF) and (j = LC) then textcolor(red) // pintamos de color rojo la suma total
+				else textcolor(green); // pintamos de color verde total de filas y columnas
+			end
+			else textcolor(white);
 			gotoxy(10*j, i+5);
 			write(numeros[j,i]);
 		end;
