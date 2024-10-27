@@ -23,6 +23,7 @@ const
 
 var i : byte;
 	menuRegister : array[1..L_menu] of menu;
+	dia : string;
 
 procedure loadMenu();
 begin
@@ -52,11 +53,51 @@ begin
 		write('cena: ',menuRegister[i].cena);
 	end;
 end;
+function identificacionDelDia(index : byte) : menu;
+begin
+		gotoxy(20, 4);
+		write('dia ', index);
+		gotoxy(20, 6);
+		write('des: ',menuRegister[index].desayuno);
+		gotoxy(20, 7);
+		write('alm: ',menuRegister[index].almuerzo);
+		gotoxy(20, 8);
+		write('cena: ',menuRegister[index].cena);
+		identificacionDelDia := menuRegister[index];
+end;
+
+
+procedure searchMenuForDay();
+var 
+	seguir : char;
+begin
+	repeat
+	write('ingrese el dia para saber el menu: ');
+	readln(dia);
+	if dia = 'n' then writeln('hasta luego')
+	else
+	begin
+	case dia of
+	'lunes': identificacionDelDia(1);
+	'martes': identificacionDelDia(2);
+	'miercoles': identificacionDelDia(3);
+	'jueves': identificacionDelDia(4);
+	'viernes': identificacionDelDia(5);
+	end;
+	readkey;
+	clrscr;
+	write('desea continuar s/n: ');
+	readln(seguir);
+	end;
+	until seguir = 'n';
+end;
 
 BEGIN
 	loadMenu();
 	clrscr;
 	printMenu();
-	
+	readkey;
+	clrscr;
+	searchMenuForDay();
 END.
 
