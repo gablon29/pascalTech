@@ -36,6 +36,12 @@ begin
 	begin
 		for j := 1 to LC do
 		begin
+			if (i  = LF) or (j = LC) then // pintamos los totales;
+			begin
+			if (i = LF) and (j = LC) then textcolor(yellow) // pintamos el total de la matriz;
+			else textcolor(green);
+			end
+			else textcolor(white);
 			gotoxy(10*j, i+5);
 			write(numeros[j,i]);
 		end;
